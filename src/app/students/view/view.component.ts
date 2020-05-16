@@ -14,7 +14,10 @@ import { User } from 'src/app/Model/user';
 export class ViewComponent implements OnInit {
   users: any;
 
-  constructor(private apiService:ServicesService) { }
+  constructor(
+        private apiService:ServicesService,
+        private router : Router
+    ) { }
 
   ngOnInit() {
     this.getUsers();
@@ -41,8 +44,7 @@ export class ViewComponent implements OnInit {
 
   editUser(user:User){
     console.log(user.id);
-
-    
+    this.router.navigate(['edit/'+user.id]);    
   }
 
 }

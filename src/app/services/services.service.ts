@@ -40,4 +40,12 @@ export class ServicesService {
     return this.http.delete<ApiResponse>(this.baseURL+'/register/delete/'+id,{headers});
   }
   
+  editUser(user:User): Observable<ApiResponse>{
+    let json = JSON.stringify(user);
+    let params = "json="+json;
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');    
+
+    return this.http.put<ApiResponse>(this.baseURL+'/register/update',params,{headers});
+  }
+
 }
