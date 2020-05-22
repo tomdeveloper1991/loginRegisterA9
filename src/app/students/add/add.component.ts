@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiResponse } from 'src/app/Model/api-response';
 import { ServicesService } from './../../services/services.service';
+import { LoginServiceService } from './../../services/login-service.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,17 +10,21 @@ import { Router } from '@angular/router';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
-export class AddComponent implements OnInit {
+export class AddComponent implements OnInit {  
 
   constructor(
     private formBuilder:FormBuilder, 
     private apiService:ServicesService,
+    private loginService:LoginServiceService,
     private router:Router
     ) { }
 
   addForm: FormGroup;  
 
   ngOnInit() {
+
+    this.loginService.controlSesion();
+
     this.addForm = this.formBuilder.group({
       id: [],
       username: ['', Validators.required],
@@ -32,7 +37,7 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.addForm.value);
+    //console.log(this.addForm.value);
 
     this.apiService.createUser(this.addForm.value)
     .subscribe(data => {

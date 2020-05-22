@@ -15,6 +15,13 @@ export class ServicesService {
 
   baseURL = 'http://localhost/apiRestSlim/public';
 
+  login(loginData:any){
+    let json = JSON.stringify(loginData);
+    let params = "json="+json;
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');    
+    return this.http.post<ApiResponse>(this.baseURL+'/login',params,{headers});
+  }
+
   getUserById(id:number): Observable<ApiResponse>{   
     let headers = new HttpHeaders().set('Content-Type','text/html; charset=UTF-8');
     return this.http.get<ApiResponse>(this.baseURL+'/register/listById/'+id,{headers});
@@ -46,6 +53,5 @@ export class ServicesService {
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');    
 
     return this.http.put<ApiResponse>(this.baseURL+'/register/update',params,{headers});
-  }
-
+  }  
 }

@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="row">
+    <div class="col-md-6">
+        <h2 style="margin: auto;">Please Login</h2>
+        <h3 *ngIf="message">
+            {{message}}
+        </h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">User name:</label>
+                <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
+                <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">
+                    Please enter user name
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" formControlName="password" id="password" autocomplete="off">
+                <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">
+                    Please enter the password
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+            </div>            
+            <div *ngIf="invalidLogin" class="error">
+                <div class="alert alert-danger" role="alert">Invalid user or password. Please try again</div>
+            </div>
+        </form>
+    </div>
+</div>

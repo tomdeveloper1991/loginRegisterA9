@@ -20,5 +20,14 @@
             <button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
         </td>
     </tr>    
+    <tr>
+        <td colspan="7">
+            <button class="btn btn-success" [routerLink]="['/add']">Add user</button>
+        </td>
+        <!--
+            <button class="btn btn-success" routerLinkActive="active" routerLink="/add">Add user</button>           
+            <td><button class="btn btn-success" (click)=goToAddUser()>Add User</button></td>
+            <td><button class="btn btn-success" (click)=goToEditUser()>Add User</button></td>
+        -->
+    </tr>
 </table>
-<!--<ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>-->
